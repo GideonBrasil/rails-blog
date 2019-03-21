@@ -1,4 +1,19 @@
 <%= form_for([@article, @article.comments.build]) do |f| %>
+
+  <% if flash[:comment_errors] %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(flash[:comment_errors].count, "error") %> prohibited
+      this article from being saved:
+    </h2>
+    <ul>
+      <% flash[:comment_errors].each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
     <p>
       <%= f.label :commenter %><br>
       <%= f.text_field :commenter %>
